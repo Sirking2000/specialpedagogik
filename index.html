@@ -1,76 +1,600 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Furuviks Specialpedagogik AB</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #ffffff;
-            color: #222;
-            line-height: 1.6;
-        }
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        section {
-            padding: 30px 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        h1, h2 {
-            margin-top: 0;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #f2f2f2;
-            margin-top: 40px;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Furuviks Specialpedagogik AB</title>
+
+  <!-- Elegant font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #2c3e50;
+      background: #f8f9fa;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 0 2rem;
+      transition: box-shadow 0.3s ease;
+    }
+
+    nav.scrolled {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-brand {
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 300;
+      font-size: 1.15rem;
+      color: #4A6FA5;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #555;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      transition: color 0.25s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #4A6FA5;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: #4A6FA5;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Mobile nav toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #4A6FA5;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* ===== HERO / LOGO SECTION ===== */
+    .hero {
+      padding: 140px 2rem 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(180deg, #ffffff 0%, #eef2f7 100%);
+    }
+
+    .logo-wrapper {
+      background: #4A6FA5;
+      color: #ffffff;
+      padding: 48px 72px;
+      border-radius: 8px;
+      text-align: center;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 40px rgba(74, 111, 165, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .logo-wrapper:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(74, 111, 165, 0.35);
+    }
+
+    .line {
+      width: 100%;
+      height: 2px;
+      background: #ffffff;
+      opacity: 0.9;
+    }
+
+    .line:first-child {
+      margin: -15px 0;
+    }
+
+    .line:last-child {
+      margin: 2px 0 -15px 0;
+    }
+
+    .logo-line-1 {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 4.6rem;
+      font-weight: 300;
+      margin-bottom: -20px;
+    }
+
+    .logo-line-2 {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 6px;
+      letter-spacing: 0.22em;
+    }
+
+    .logo-line-3 {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 1.45rem;
+      font-weight: 300;
+      opacity: 0.9;
+      letter-spacing: 0.18em;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 80px 2rem;
+    }
+
+    .section-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: "Inter Tight", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #4A6FA5;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: #1a2b3c;
+      margin-bottom: 1.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #2c3e50;
+      margin-bottom: 0.6rem;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+      max-width: 640px;
+    }
+
+    /* ===== WELCOME SECTION ===== */
+    #valkommen {
+      background: #ffffff;
+    }
+
+    #valkommen p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+
+    /* ===== SERVICES SECTION ===== */
+    #tjanster {
+      background: #eef2f7;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .service-card {
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border-left: 3px solid #4A6FA5;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    .service-card .icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 0;
+      max-width: none;
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    #kontakt {
+      background: #ffffff;
+    }
+
+    .contact-card {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 36px 32px;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #4A6FA5;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #999;
+      font-weight: 500;
+    }
+
+    .contact-value {
+      font-size: 1rem;
+      color: #2c3e50;
+    }
+
+    .contact-value a {
+      color: #4A6FA5;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .contact-value a:hover {
+      color: #3a5c8a;
+      text-decoration: underline;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1a2b3c;
+      color: #a0b4c8;
+      padding: 28px 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    footer .footer-logo {
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ===== FADE-IN ANIMATION ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .logo-wrapper {
+        padding: 32px 32px;
+      }
+
+      .logo-line-1 {
+        font-size: 2.8rem;
+      }
+
+      .logo-line-2 {
+        font-size: 1.1rem;
+        letter-spacing: 0.14em;
+      }
+
+      .logo-line-3 {
+        font-size: 0.75rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.97);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+
+      .nav-links li:last-child {
+        border-bottom: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .contact-card {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>Furuviks Specialpedagogik AB</h1>
-    <p>Professionellt stöd för alla barn</p>
-</header>
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">info@specialpedagogik.com</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#valkommen">Välkommen</a></li>
+        <li><a href="#tjanster">Tjänster</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Meny">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
 
-<section>
-    <h2>Välkommen</h2>
-    <p>
-        Furuviks Specialpedagogik AB erbjuder kvalificerat specialpedagogiskt stöd till skolor, 
-        förskolor och andra verksamheter som arbetar med barn och elever i behov av särskilt stöd.
-    </p>
+  <!-- ===== HERO / LOGO ===== -->
+  <header class="hero">
+    <div class="logo-wrapper">
+      <div class="line"></div>
+      <div class="logo-line-1">FURUVIKS</div>
+      <div class="logo-line-2">SPECIALPEDAGOGIK AB</div>
+      <div class="logo-line-3">SPECIALPEDAGOGIK.COM</div>
+      <div class="line"></div>
+    </div>
+  </header>
 
-    <h2>Tjänster</h2>
-    <ul>
-        <li>Specialpedagogiska utredningar</li>
-        <li>Handledning till personal</li>
-        <li>Stöd i anpassningar och åtgärdsprogram</li>
-        <li>Observationer och kartläggningar</li>
-        <li>Föreläsningar och kompetensutveckling</li>
-    </ul>
+  <!-- ===== VÄLKOMMEN ===== -->
+  <section id="valkommen">
+    <div class="section-inner fade-in">
+      <span class="section-tag">Välkommen</span>
+      <h2>Professionellt stöd för barn och elever</h2>
+      <p>
+        Furuviks Specialpedagogik AB erbjuder kvalificerat specialpedagogiskt
+        stöd till skolor, förskolor och andra verksamheter som arbetar med barn
+        och elever i behov av särskilt stöd.
+      </p>
+    </div>
+  </section>
 
-    <h2>Kontakt</h2>
-    <p>
-        E‑post: <a href="mailto:info@specialpedagogik.com">info@specialpedagogik.com</a><br>
-        Webb: <a href="https://specialpedagogik.com">specialpedagogik.com</a>
-    </p>
-</section>
+  <!-- ===== TJÄNSTER ===== -->
+  <section id="tjanster">
+    <div class="section-inner fade-in">
+      <span class="section-tag">Tjänster</span>
+      <h2>Vad vi erbjuder</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon">📋</div>
+          <h3>Specialpedagogiska utredningar</h3>
+          <p>Kartläggning av styrkor och utmaningar för att ge rätt stödinsatser.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🤝</div>
+          <h3>Handledning till personal</h3>
+          <p>Stöd och vägledning i det dagliga arbetet med barn i behov av särskilt stöd.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">📝</div>
+          <h3>Anpassningar & åtgärdsprogram</h3>
+          <p>Stöd i att utforma och genomföra anpassningar och åtgärdsprogram.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🔍</div>
+          <h3>Observationer & kartläggningar</h3>
+          <p>Systematiska observationer för att identifiera behov och utvecklingsområden.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🎤</div>
+          <h3>Föreläsningar & kompetensutveckling</h3>
+          <p>Utbildningsinsatser inom specialpedagogik för hela arbetslaget.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<footer>
-    © 2026 Furuviks Specialpedagogik AB
-</footer>
+  <!-- ===== KONTAKT ===== -->
+  <section id="kontakt">
+    <div class="section-inner fade-in">
+      <span class="section-tag">Kontakt</span>
+      <h2>Hör av dig</h2>
+      <p>
+        Är du intresserad av våra tjänster eller vill veta mer om hur vi kan
+        stötta din verksamhet? Kontakta oss gärna.
+      </p>
+      <div class="contact-card">
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">
+            <span class="contact-label">E‑post</span>
+            <span class="contact-value">
+              <a href="mailto:info@specialpedagogik.com">info@specialpedagogik.com</a>
+            </span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div class="contact-text">
+            <span class="contact-label">Webb</span>
+            <span class="contact-value">
+              <a href="https://specialpedagogik.com">specialpedagogik.com</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-logo">Furuviks Specialpedagogik AB</div>
+    <div>&copy; 2026 Furuviks Specialpedagogik AB</div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // --- Scroll: navbar shadow ---
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+
+    // --- Mobile nav toggle ---
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    // Close mobile nav when a link is clicked
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+
+    // --- Fade-in on scroll (Intersection Observer) ---
+    const fadeEls = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
-
-
