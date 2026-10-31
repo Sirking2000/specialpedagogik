@@ -288,6 +288,50 @@
       max-width: none;
     }
 
+    /* ===== REFERENSER SECTION ===== */
+    #referenser {
+      background: #f8f9fa;
+    }
+
+    .reference-list {
+      list-style: none;
+      margin-top: 2.5rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .reference-list li {
+      position: relative;
+      background: #ffffff;
+      border-radius: 6px;
+      border-left: 3px solid #4A6FA5;
+      padding: 24px 28px 24px 56px;
+      font-size: 1rem;
+      color: #555;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .reference-list li::before {
+      content: "\201C";
+      position: absolute;
+      top: 6px;
+      left: 18px;
+      font-family: "Inter Tight", sans-serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      line-height: 1;
+      color: #4A6FA5;
+      opacity: 0.45;
+    }
+
+    .reference-list li:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    }
+
     /* ===== CONTACT SECTION ===== */
     #kontakt {
       background: #ffffff;
@@ -384,6 +428,12 @@
     }
 
     /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .nav-links {
+        gap: 1.4rem;
+      }
+    }
+
     @media (max-width: 768px) {
       .logo-wrapper {
         padding: 32px 32px;
@@ -440,6 +490,17 @@
       .contact-card {
         flex-direction: column;
         gap: 1.5rem;
+      }
+
+      .reference-list li {
+        padding: 20px 20px 20px 48px;
+        font-size: 0.95rem;
+      }
+
+      .reference-list li::before {
+        top: 8px;
+        left: 12px;
+        font-size: 2.2rem;
       }
     }
   </style>
@@ -534,6 +595,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#valkommen">Välkommen</a></li>
         <li><a href="#tjanster">Tjänster</a></li>
+        <li><a href="#referenser">Referenser</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
       <button class="nav-toggle" id="navToggle" aria-label="Meny">
@@ -603,6 +665,21 @@
           <p>Utbildningsinsatser inom specialpedagogik för hela arbetslaget.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== REFERENSER ===== -->
+  <section id="referenser">
+    <div class="section-inner fade-in">
+      <span class="section-tag">Referenser</span>
+      <h2>Omdömen från uppdragsgivare 2026</h2>
+      <ul class="reference-list">
+        <li>Anna har en fin elevsyn och är bra på att skapa goda relationer med elever för att få en bra utgångspunkt för stöd.</li>
+        <li>Anna är god kollega och bidrar till skolans kultur och miljö. Samvetsgrann och ordentlig, kompetent inom sitt område.</li>
+        <li>Anna är noggrann och lugn, metodisk och trygg i sitt arbete som specialpedagog.</li>
+        <li>Anna har hjälpt oss med frånvaroutredningar, motiverande samtal, gjort kartläggningar och utredningar i samband med åtgärdsprogram.</li>
+        <li>Anna arbetar strukturerat och behärskar de elevadministrativa system vi arbetar i bla ProRenata.</li>
+      </ul>
     </div>
   </section>
 
