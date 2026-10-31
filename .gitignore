@@ -1,0 +1,38 @@
+# Operativsystem
+.DS_Store
+Thumbs.db
+
+# Editorer och IDE:er
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Loggfiler
+*.log
+
+# Tillfälliga filer
+tmp/
+temp/
+.cache/
+
+# Node.js (om du senare använder npm)
+node_modules/
+
+# Byggmappar (om du senare använder bundlers)
+dist/
+build/
+
+# Miljövariabler
+.env
+.env.*
+
+# Komprimerade filer
+*.zip
+*.tar
+*.gz
+
+# Backupfiler
+*.bak
+*.backup
+*~
